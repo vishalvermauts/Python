@@ -1,0 +1,115 @@
+import json
+import pandas as pd
+
+# File Read and Write Operations
+
+# 1. Read from a file
+with open('example.txt', 'r') as file:
+    content = file.read()
+    print(content)
+
+# 2. Write to a file
+with open('output.txt', 'w') as file:
+    file.write("Hello, World!")
+
+# JSON
+
+# 3. Read JSON from file
+with open('data.json', 'r') as file:
+    data = json.load(file)
+    print(data)
+
+# 4. Write JSON to file
+data = {"name": "John", "age": 30}
+with open('output.json', 'w') as file:
+    json.dump(data, file, indent=4)
+
+# Pandas
+
+# 5. Read CSV into DataFrame
+df = pd.read_csv('data.csv')
+print(df)
+
+# 6. Write DataFrame to CSV
+df.to_csv('output.csv', index=False)
+
+# 7. Read Excel into DataFrame
+df = pd.read_excel('data.xlsx')
+print(df)
+
+# 8. Write DataFrame to Excel
+df.to_excel('output.xlsx', index=False)
+
+# CSV
+
+# 9. Read CSV file
+with open('data.csv', 'r') as file:
+    csv_reader = csv.reader(file)
+    for row in csv_reader:
+        print(row)
+
+# 10. Write CSV file
+data = [['John', 25], ['Jane', 30], ['Doe', 35]]
+with open('output.csv', 'w', newline='') as file:
+    csv_writer = csv.writer(file)
+    csv_writer.writerows(data)
+
+# 11. Read CSV using DictReader
+with open('data.csv', 'r') as file:
+    csv_reader = csv.DictReader(file)
+    for row in csv_reader:
+        print(row)
+
+# 12. Write CSV using DictWriter
+fieldnames = ['Name', 'Age']
+data = [{'Name': 'John', 'Age': 25}, {'Name': 'Jane', 'Age': 30}, {'Name': 'Doe', 'Age': 35}]
+with open('output.csv', 'w', newline='') as file:
+    csv_writer = csv.DictWriter(file, fieldnames=fieldnames)
+    csv_writer.writeheader()
+    csv_writer.writerows(data)
+
+# JSON
+
+# 13. Read JSON from string
+json_string = '{"name": "John", "age": 30}'
+data = json.loads(json_string)
+print(data)
+
+# 14. Convert Python object to JSON string
+data = {"name": "John", "age": 30}
+json_string = json.dumps(data)
+print(json_string)
+
+# Pandas
+
+# 15. Create DataFrame from dictionary
+data = {'Name': ['John', 'Jane', 'Doe'], 'Age': [25, 30, 35]}
+df = pd.DataFrame(data)
+print(df)
+
+# 16. Convert DataFrame to dictionary
+data = df.to_dict()
+print(data)
+
+# CSV
+
+# 17. Read CSV into dictionary
+with open('data.csv', 'r') as file:
+    csv_reader = csv.DictReader(file)
+    data = [row for row in csv_reader]
+    print(data)
+
+# 18. Write dictionary to CSV
+fieldnames = ['Name', 'Age']
+data = [{'Name': 'John', 'Age': 25}, {'Name': 'Jane', 'Age': 30}, {'Name': 'Doe', 'Age': 35}]
+with open('output.csv', 'w', newline='') as file:
+    csv_writer = csv.DictWriter(file, fieldnames=fieldnames)
+    csv_writer.writeheader()
+    csv_writer.writerows(data)
+
+# 19. Read specific columns from CSV into DataFrame
+df = pd.read_csv('data.csv', usecols=['Name', 'Age'])
+print(df)
+
+# 20. Write specific columns from DataFrame to CSV
+df.to_csv('output.csv', columns=['Name', 'Age'], index=False)
