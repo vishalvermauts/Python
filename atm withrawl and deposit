@@ -1,0 +1,24 @@
+import sys
+
+# Starting balance
+starting_balance = 1000
+
+# Check if correct number of arguments is provided
+if len(sys.argv) != 2:
+    print("Incorrect number of arguments. Please provide 'Withdraw' or 'Deposit'.")
+else:
+    function = sys.argv[1]
+
+    if function == 'Withdraw':
+        amount = float(input("Enter the amount to withdraw: "))
+        if amount <= starting_balance:
+            new_balance = starting_balance - amount
+            print("Your new balance is:", new_balance)
+        else:
+            print("Withdrawn amount exceeds current balance")
+    elif function == 'Deposit':
+        amount = float(input("Enter the amount to deposit: "))
+        new_balance = starting_balance + amount
+        print("Your new balance is:", new_balance)
+    else:
+        print("Incorrect function selected")
