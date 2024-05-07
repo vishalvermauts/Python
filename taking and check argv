@@ -1,0 +1,10 @@
+#!/usr/bin/python3
+
+import sys
+
+list_size = len(sys.argv)
+
+if list_size != 2 :
+    print ("Expecting a single command line argument")
+else :
+    print("OK I can do some work");
