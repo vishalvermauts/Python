@@ -1,0 +1,8 @@
+#!/usr/bin/python3
+import sys
+
+vari=int(sys.argv[1])
+varf=float(sys.argv[2])
+varb=bool(sys.argv[3])
+
+print("vari varf varb", vari, varf, varb)
