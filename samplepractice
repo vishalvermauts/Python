@@ -1,0 +1,295 @@
+import math
+
+# Program 1: Sum of Natural Numbers
+n = int(input("Enter a positive integer: "))
+sum_of_numbers = (n * (n + 1)) // 2
+print("Sum of natural numbers up to", n, "is", sum_of_numbers)
+
+# Program 2: Reverse a String
+string = input("Enter a string: ")
+reversed_string = string[::-1]
+print("Reversed string:", reversed_string)
+
+# Program 3: Count Vowels in a String
+string = input("Enter a string: ")
+vowels = 'aeiou'
+count = sum(1 for char in string if char.lower() in vowels)
+print("Number of vowels:", count)
+
+# Program 4: Calculate Area of a Circle
+radius = float(input("Enter the radius of the circle: "))
+area = math.pi * radius ** 2
+print("Area of the circle:", area)
+
+# Program 5: Check if a Year is a Leap Year
+year = int(input("Enter a year: "))
+is_leap_year = (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+print(year, "is a leap year:", is_leap_year)
+
+# Program 6: Calculate GCD (Greatest Common Divisor)
+def gcd(a, b):
+   while b:
+       a, b = b, a % b
+   return a
+
+num1 = int(input("Enter first number: "))
+num2 = int(input("Enter second number: "))
+print("GCD of", num1, "and", num2, "is", gcd(num1, num2))
+
+# Program 7: Find the Largest Number in a List
+numbers = [int(x) for x in input("Enter numbers separated by space: ").split()]
+largest = max(numbers)
+print("Largest number:", largest)
+
+# Program 8: Calculate Factorial Using Recursion
+def factorial(n):
+   return 1 if n == 0 else n * factorial(n - 1)
+
+num = int(input("Enter a non-negative integer: "))
+print("Factorial of", num, "is", factorial(num))
+
+# Program 9: Check if a Number is Armstrong Number
+num = int(input("Enter a number: "))
+num_str = str(num)
+num_digits = len(num_str)
+armstrong_sum = sum(int(digit) ** num_digits for digit in num_str)
+is_armstrong = armstrong_sum == num
+print(num, "is an Armstrong number:", is_armstrong)
+
+# Program 10: Check if a String is a Palindrome
+string = input("Enter a string: ")
+is_palindrome = string == string[::-1]
+print("Is Palindrome:", is_palindrome)
+
+
+# Program 11: Check if a Number is Prime
+def is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+number = int(input("Enter a number: "))
+print(number, "is prime:", is_prime(number))
+
+# Program 12: Swap Two Variables
+a = input("Enter the value of a: ")
+b = input("Enter the value of b: ")
+print("Before swapping: a =", a, ", b =", b)
+a, b = b, a
+print("After swapping: a =", a, ", b =", b)
+
+# Program 13: Calculate Simple Interest
+principal = float(input("Enter principal amount: "))
+rate = float(input("Enter rate of interest: "))
+time = float(input("Enter time period (in years): "))
+simple_interest = (principal * rate * time) / 100
+print("Simple interest:", simple_interest)
+
+# Program 14: Check if a Number is Odd or Even
+number = int(input("Enter a number: "))
+if number % 2 == 0:
+    print(number, "is even.")
+else:
+    print(number, "is odd.")
+
+# Program 15: Generate Fibonacci Series
+n = int(input("Enter the number of terms: "))
+a, b = 0, 1
+fibonacci_series = [a, b]
+for _ in range(n - 2):
+    a, b = b, a + b
+    fibonacci_series.append(b)
+print("Fibonacci series:", fibonacci_series)
+
+# Program 16: Calculate Power of a Number
+base = float(input("Enter the base: "))
+exponent = int(input("Enter the exponent: "))
+power = base ** exponent
+print("Result:", power)
+
+# Program 17: Calculate Square Root of a Number
+num = float(input("Enter a number: "))
+if num >= 0:
+    sqrt = num ** 0.5
+    print("Square root:", sqrt)
+else:
+    print("Cannot calculate square root of a negative number.")
+
+# Program 18: Find Minimum and Maximum Element in a List
+numbers = [int(x) for x in input("Enter numbers separated by space: ").split()]
+minimum = min(numbers)
+maximum = max(numbers)
+print("Minimum:", minimum, ", Maximum:", maximum)
+
+# Program 19: Convert Celsius to Fahrenheit
+celsius = float(input("Enter temperature in Celsius: "))
+fahrenheit = (celsius * 9/5) + 32
+print("Temperature in Fahrenheit:", fahrenheit)
+
+# Program 20: Count Characters in a String
+string = input("Enter a string: ")
+char_count = {}
+for char in string:
+    char_count[char] = char_count.get(char, 0) + 1
+print("Character count:", char_count)
+
+
+
+
+# Program 21: Check if a Number is Positive, Negative, or Zero
+number = float(input("Enter a number: "))
+if number > 0:
+    print("Positive number.")
+elif number < 0:
+    print("Negative number.")
+else:
+    print("Zero.")
+
+# Program 22: Find LCM (Least Common Multiple) of Two Numbers
+def lcm(a, b):
+    gcd = math.gcd(a, b)
+    return (a * b) // gcd
+
+num1 = int(input("Enter first number: "))
+num2 = int(input("Enter second number: "))
+print("LCM of", num1, "and", num2, "is", lcm(num1, num2))
+
+# Program 23: Count Digits in a Number
+number = int(input("Enter a number: "))
+num_digits = len(str(abs(number)))
+print("Number of digits:", num_digits)
+
+# Program 24: Check if a Number is Perfect Number
+def is_perfect(num):
+    divisor_sum = sum(i for i in range(1, num) if num % i == 0)
+    return num == divisor_sum
+
+number = int(input("Enter a number: "))
+print(number, "is a perfect number:", is_perfect(number))
+
+# Program 25: Remove Duplicate Elements from a List
+def remove_duplicates(lst):
+    return list(set(lst))
+
+elements = [int(x) for x in input("Enter elements separated by space: ").split()]
+unique_elements = remove_duplicates(elements)
+print("List after removing duplicates:", unique_elements)
+
+# Program 26: Check if a Year is a Leap Year (using calendar module)
+import calendar
+
+year = int(input("Enter a year: "))
+is_leap_year = calendar.isleap(year)
+print(year, "is a leap year:", is_leap_year)
+
+# Program 27: Reverse a List
+def reverse_list(lst):
+    return lst[::-1]
+
+elements = [int(x) for x in input("Enter elements separated by space: ").split()]
+reversed_elements = reverse_list(elements)
+print("Reversed list:", reversed_elements)
+
+# Program 28: Calculate Median of a List
+def calculate_median(lst):
+    sorted_lst = sorted(lst)
+    n = len(sorted_lst)
+    if n % 2 == 0:
+        return (sorted_lst[n//2 - 1] + sorted_lst[n//2]) / 2
+    else:
+        return sorted_lst[n//2]
+
+elements = [int(x) for x in input("Enter elements separated by space: ").split()]
+median = calculate_median(elements)
+print("Median of the list:", median)
+
+# Program 29: Calculate Exponential of a Number
+base = float(input("Enter the base: "))
+exponent = float(input("Enter the exponent: "))
+exponential = base ** exponent
+print("Result:", exponential)
+
+# Program 30: Find Sum of Squares of First N Natural Numbers
+n = int(input("Enter a positive integer: "))
+sum_of_squares = (n * (n + 1) * (2 * n + 1)) // 6
+print("Sum of squares of first", n, "natural numbers:", sum_of_squares)
+
+# Program 31: Check if a String is Anagram
+def is_anagram(str1, str2):
+    return sorted(str1.lower()) == sorted(str2.lower())
+
+string1 = input("Enter the first string: ")
+string2 = input("Enter the second string: ")
+print("Are the strings anagrams:", is_anagram(string1, string2))
+
+# Program 32: Check if a String is Pangram
+def is_pangram(string):
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    return set(alphabet) <= set(string.lower())
+
+sentence = input("Enter a sentence: ")
+print("Is the sentence a pangram:", is_pangram(sentence))
+
+# Program 33: Calculate Compound Interest
+def compound_interest(principal, rate, time):
+    amount = principal * (1 + rate / 100) ** time
+    return amount - principal
+
+principal = float(input("Enter principal amount: "))
+rate = float(input("Enter rate of interest: "))
+time = float(input("Enter time period (in years): "))
+interest = compound_interest(principal, rate, time)
+print("Compound interest:", interest)
+
+# Program 34: Find ASCII Value of a Character
+char = input("Enter a character: ")
+ascii_value = ord(char)
+print("ASCII value of", char, "is", ascii_value)
+
+# Program 35: Convert Decimal to Binary
+decimal = int(input("Enter a decimal number: "))
+binary = bin(decimal)[2:]
+print("Binary representation:", binary)
+
+# Program 36: Convert Decimal to Octal
+decimal = int(input("Enter a decimal number: "))
+octal = oct(decimal)[2:]
+print("Octal representation:", octal)
+
+# Program 37: Convert Decimal to Hexadecimal
+decimal = int(input("Enter a decimal number: "))
+hexadecimal = hex(decimal)[2:]
+print("Hexadecimal representation:", hexadecimal)
+
+# Program 38: Calculate HCF (Highest Common Factor) of Two Numbers
+def hcf(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+num1 = int(input("Enter first number: "))
+num2 = int(input("Enter second number: "))
+print("HCF of", num1, "and", num2, "is", hcf(num1, num2))
+
+# Program 39: Check if a String is a Palindrome (ignoring punctuation and spaces)
+import re
+
+def is_palindrome(string):
+    clean_string = re.sub(r'[^a-zA-Z]', '', string).lower()
+    return clean_string == clean_string[::-1]
+
+string = input("Enter a string: ")
+print("Is Palindrome (ignoring punctuation and spaces):", is_palindrome(string))
+
+# Program 40: Merge Two Sorted Lists
+def merge_lists(list1, list2):
+    merged_list = sorted(list1 + list2)
+    return merged_list
+
+list1 = [int(x) for x in input("Enter elements of first list separated by space: ").split()]
+list2 = [int(x) for x in input("Enter elements of second list separated by space: ").split()]
+merged_list = merge_lists(list1, list2)
+print("Merged list:", merged_list)
