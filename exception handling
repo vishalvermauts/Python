@@ -1,0 +1,55 @@
+# 1. Division by Zero
+try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print("Error: Division by zero!")
+
+# 2. Index Error
+try:
+    my_list = [1, 2, 3]
+    print(my_list[4])
+except IndexError:
+    print("Error: Index out of range!")
+
+# 3. Type Error
+try:
+    result = "hello" + 10
+except TypeError:
+    print("Error: Unsupported operation between string and integer!")
+
+# 4. File Not Found Error (File Handling)
+try:
+    with open("nonexistent_file.txt", "r") as file:
+        content = file.read()
+except FileNotFoundError:
+    print("Error: File not found!")
+
+# 5. Key Error (Dictionary Access)
+try:
+    my_dict = {"a": 1, "b": 2}
+    print(my_dict["c"])
+except KeyError:
+    print("Error: Key does not exist!")
+
+# 6. Value Error (Conversion)
+try:
+    num = int("abc")
+except ValueError:
+    print("Error: Cannot convert 'abc' to an integer!")
+
+# 7. Assertion Error
+try:
+    assert 2 + 2 == 5, "Math is broken!"
+except AssertionError as e:
+    print("Assertion Error:", e)
+
+# 8. Custom Error Handling
+def divide(x, y):
+    if y == 0:
+        raise ValueError("Error: Division by zero!")
+    return x / y
+
+try:
+    result = divide(10, 0)
+except ValueError as e:
+    print(e)
