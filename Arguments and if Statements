@@ -1,0 +1,26 @@
+import sys
+
+# Check if correct number of arguments is provided
+if len(sys.argv) < 3:
+    print("Invalid number of arguments. Please provide shape and height (and length for rectangle if needed).")
+else:
+    # Extract shape and height from command line arguments
+    shape = sys.argv[1]
+    height = float(sys.argv[2])
+
+    # Calculate area based on the shape
+    if shape == "circle":
+        area = height * height * 3.14
+        print(f"The area of the circle is {area:.2f}")
+    elif shape == "square":
+        area = height ** 2
+        print(f"The area of the square is {area:.2f}")
+    elif shape == "rectangle":
+        if len(sys.argv) < 4:
+            print("Invalid number of arguments. Please provide length for the rectangle.")
+        else:
+            length = float(sys.argv[3])
+            area = height * length
+            print(f"The area of the rectangle is {area:.2f}")
+    else:
+        print("Invalid shape. Please provide 'circle', 'square', or 'rectangle'.")
