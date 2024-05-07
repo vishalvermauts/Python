@@ -1,0 +1,22 @@
+import sys
+
+def process_arguments(arguments):
+    num_args = len(arguments) - 1  # Exclude the program name
+
+    if num_args == 1:
+        print("Argument 1:", arguments[1])
+    elif num_args == 2:
+        arg1 = float(arguments[1])
+        arg2 = float(arguments[2])
+        print("Product:", arg1 * arg2)
+    elif num_args == 3:
+        arg1 = float(arguments[1])
+        arg2 = float(arguments[2])
+        arg3 = float(arguments[3])
+        result = (arg1 + arg2) ** arg3
+        print("Result:", result)
+    else:
+        print("Too many arguments entered. Ignoring extra arguments.")
+
+if __name__ == "__main__":
+    process_arguments(sys.argv)
