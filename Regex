@@ -215,9 +215,60 @@ into_list = ['254', '0 ', '200', '0 ']
 into_list = ['32', '54', 'Au', 'tumn ', '10', '20', '00', 'imes ', 'more ', 'ting ']
 
 
+3 Escaping Meta-Characters and Extracting Results
+import re
+#Examples are non overlapping serach.
+from_text = 'Does Angela own an Anaconda? Does she own a Python ?'
+find_regx = r'\?' #We escape the meta character.
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+
+Escaping the Escape why we need Raw Strings
 
 
+import re
+#Example no raw strings.
+from_text = 'My String is c:\\nicepath\\nicefile'
+print("from_text=",from_text)
+find_regx = '[a-z]:\\\\[a-z]+\\\\[a-z]+'
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
 
+
+import re
+#Example using raw strings.
+from_text = r'My String is c:\nicepath\nicefile'
+print("from_text=",from_text)
+find_regx = r'[a-z]:\\[a-z]+\\[a-z]+'
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+
+
+Extracting Results and using the Group meta-characters ()
+Any of the regular expression function of the re module support the Group meta-characters (), In addition to its role as a delimiter of parts of a regular expression it  can allow sequences of matched characters to be extracted from the input string. We give an example below:
+
+
+Pay particular attention to the the difference between groups() and group(0) to group(3).
+
+groups ,plural, provides information about all matches.
+
+group(0) provides the whole matched section. 
+
+group(1) to group(3) provides matched data extracted from the corresponding () meta-characters.
+
+import re
+#Example using raw strings.
+from_text = r'bits=8, bytes=107 and pieces=900 '
+print("from_text=",from_text)
+find_regx = r'.*bits=(\d+).*bytes=(\d+).*pieces=(\d+).*'
+into_data = re.search(find_regx,from_text)
+print(into_data)
+if into_data :
+    print("all groups=",into_data.groups())
+    print("group 0   =",into_data.group(0))
+    print("group 1   =",into_data.group(1))
+    print("group 2   =",into_data.group(2))
+    print("group 2   =",into_data.group(3))
 
 
 
