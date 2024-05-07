@@ -1,0 +1,239 @@
+.       Matches any character except a newline
+
+^       Matches the start of a string
+
+$       Matches the end of a string (before the newline)
+
+*       Repetition qualifier - causes the expression before its placement to apply 0 or more times
+
++       Repetition qualifier - causes the expression before its placement to apply 1 or more times
+
+?       Repetition qualifier - causes the expression before its placement to apply 0 or 1 times
+
+{x}     Repetition qualifier - requires the expression before its placement to apply exactly x times
+
+{x,y}   Repetition qualifier - requires the expression before its placement to apply anywhere between x and y times inclusive
+
+\       A unique character - used to escape the meaning of a regex character. More on this below.
+
+[ ]     Selection qualifier - provides multiple criteria to match against (case sensitive).
+        [a,z] specifies that the match must be either a or z
+        [a-z] specifies that the match can be anything between a through z
+        [A-Z,0-9] specifies that the match can be anything from A through to Z and 0 through to 9
+        Meta-characters are automatically escaped in braces - they lose their functionality
+
+|       Used with whole regular expressions to specify the match must be the result of either expression.
+        For example: [a-z]|[0-9] means the match must either be a thru z or 0 thru 9
+
+( )     Selection qualifier - encapsulates entire regular expressions for nesting
+
+Character Classes 
+\d      Any digit. Uppercase inverts - any non digit.
+\D      Any non-digit character.
+\s      Any whitespace characters. Uppercase inverts - any non whitespace.
+\S      Any non-whitespace character.
+\w      Any alphanumeric character (including underscores). Equivalent to [a-zA-Z0-9_]. Uppercase inverts - any non alphanumeric character.
+\W      Any non-alphanumeric character.
+\t      Any tab character.
+\T      Any non-tab character.
+\n      Any newline character.
+\N      Any non-newline character.
+\r      Any carriage return character.
+\R      Any non-carriage return character.
+
+(?i)    While not a special character itself, this combination allows us to ignore case when placed in front of a desired string.
+        For example: (?i)[python] would return positively on any of the following: PyThoN, python, PYTHON, pythOn.
+
+Escaping the special meaning of a meta-character
+As mentioned above, escaping a regex character is sometimes necessary when the character we want to match is actually used by regex as a metacharacter. An example of this might be a question mark in a sentence - if we were to use regex to find a question mark normally, we'd notice that it doesn't work:
+
+In this case, we need to escape the ? character so it returns to its literal form of a plain text character:
+
+
+
+
+import re
+from_text = 'Anaconda'
+find_regx = r'a'
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+
+Search
+
+import re
+from_text = 'Anaconda'
+find_regx = r'a'
+into_data = re.search(find_regx,from_text)
+if into_data != None :
+    print ("into_data match object =",into_data)
+    #<_sre.SRE_Match object; span=(2, 3), match='a'>
+    print("start =",into_data.start())
+    print("end =",into_data.end())
+    print("span =",into_data.span())
+    print("group =",into_data.group())
+    print("string =",into_data.string)
+Split
+
+import re
+from_text = 'Angela owns an Amazonian Anaconda'
+regx_text = r' '
+into_list = re.split(regx_text,from_text)
+print (into_list)
+#['Angela', 'owns', 'an', 'Amazonian', 'Anaconda']
+
+sub
+
+import re
+read_from_text = 'Angela owns an Amazonian Anaconda'
+test_when_regx = r'Anaconda'
+swap_with_text = 'Python'
+made_into_text = re.sub(test_when_regx,swap_with_text,read_from_text)
+print ("made_into_text =",made_into_text)
+
+Using Flags to Control Search 
+
+import re
+from_text = 'Example of case insensitive match'
+find_regx = r'example'
+into_data = re.match(find_regx,from_text,re.IGNORECASE)
+if into_data != None :
+    print ("into_data match object =",into_data)
+    #<_sre.SRE_Match object; span=(2, 3), match='a'>
+    print("start =",into_data.start())
+    print("end =",into_data.end())
+    print("span =",into_data.span())
+    print("group =",into_data.group())
+    print("string =",into_data.string)
+
+
+The dot meta-character .
+
+import re
+#Examples are non overlapping serach.
+from_text = 'Anaconda'
+find_regx = r'n.'
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+#into_list = ['na', 'nd']
+
+The start and end of string meta-character  ^  
+
+import re
+#Examples are non overlapping serach.
+from_text = 'Anaconda and Python are snakes'
+find_regx = r'^A' #We match starts with an A.
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+from_text = 'Python and Anaconda are snakes'
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+find_regx = r'.$' #We match any single last character.
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+
+Repetition meta-characters * + {n} {n,m} {n,} 
+
+import re
+#Examples are non overlapping serach.
+from_text = 'The tutorial went on and on and on and on'
+find_regx = r' (on and)*' #We a space then 'on and' zero or more times.
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+find_regx = r' (on and)+' #We a space then 'on and' one or more times.
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+
+Sets and ranges of characters[ ] [ - ] and [^ ]
+
+
+import re
+#Examples are non overlapping serach.
+from_text = 'The tut_32547_Autumn was 100 to 2000 times more exciting '
+find_regx = r'[a1b7]' #Non word zero or more words Non Word'
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+find_regx = r'[^a-z\d ]' #Not a lower case letter or a digit or a space
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+
+Classes of characters \d \D \w \W
+The meta-character  \d stands for any single digit character [0-9], \w stands for any single word character, that is, any character in the ranges [a-zA-Z0-9_]  (Note there is an underscore character here).
+
+An  uppercase \D denotes, not a digit character, that is, it denotes the set  [^0-9] Similarly, an upper case \W denotes, not a word character, so that,  it denotes the set  [^a-zA-Z0-9_] 
+
+import re
+#Examples are non overlapping serach.
+from_text = 'The tut_32547_Autumn was 100 to 2000 times more exciting '
+find_regx = r'\d{2}' #any two digits
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+find_regx = r'\d{4,4}' #any four digits 
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+find_regx = r'\d\d\d\d' #any four digits 
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+
+into_list = ['32', '54', '10', '20', '00']
+into_list = ['3254', '2000']
+into_list = ['3254', '2000']
+
+import re
+#Examples are non overlapping serach.
+from_text = 'The tut_32547_Autumn was 100 to 2000 times more exciting '
+find_regx = r'\W\w*\W' #Non word zero or more words Non Word'
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+find_regx = r'\D\d+\D' #Non digit one or more digits Non digit.
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+find_regx = r'\d\d\d\d' #Four digits
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+
+into_list = [' tut_32547_Autumn ', ' 100 ', ' 2000 ', ' more ']
+into_list = ['_32547_', ' 100 ', ' 2000 ']
+into_list = ['3254', '2000']
+
+The OR meta-character |
+
+import re
+#Examples are non overlapping serach.
+from_text = 'The tut_32547_Autumn was 100 to 2000 times more exciting '
+find_regx = r'\d\d\d|was' #match 3 digits or was
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+find_regx = r'2\d\d|\d\W' #2followd by two digits OR a digit and a non word. 
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+find_regx = r'\d\d|\w{4}\W|Au' #two digits or four word then none word or Au
+into_list = re.findall(find_regx,from_text)
+print ("into_list =", into_list)
+
+into_list = ['325', 'was', '100', '200']
+into_list = ['254', '0 ', '200', '0 ']
+into_list = ['32', '54', 'Au', 'tumn ', '10', '20', '00', 'imes ', 'more ', 'ting ']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
