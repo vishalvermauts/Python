@@ -26,3 +26,156 @@ if len(find_list) != 0:
     print(find_list)
 else:
     print('No pythons here!')
+
+
+Exercise 2
+Modify the scaffold code to find the position of the first occurrence of the string python with a line provided by the user. 
+
+Your search must be case sensitive.  If the string is not found, you must return the string No pythons here! Do not change the input prompt message.
+
+For example if the input test was Python is not python your output should be:
+
+14
+
+
+
+
+#!/usr/bin/python3
+import re
+
+#We prompt the user don't change this.
+read_text = input("Enter some text\n")
+find_regx = r'python'
+
+into_data = re.search(find_regx, read_text)
+
+if into_data is None:
+    print('No pythons here!')
+else:
+    print(into_data.start())
+
+
+
+
+Exercise 3
+Use the sub and split functions to output a list of strings.
+
+Modify the scaffold code to reformat some file data. Your program should:
+
+First translate any block of 2 or more whitespace characters to a single comma character.
+
+Then translate any . character followed by a whitespace to a . character followed by a newline.  
+
+Finally, use the split function to divide the string at every newline character and create a list.
+
+There is no need to prompt the user for input, just use the input() function, and there is no need to change the way the list is processed. However, to test your code you will need to create a list with at least 2 items, so test it with at least one dot space sequence to achieve this.
+
+
+#!/usr/bin/python3
+import re
+
+#No need for a prompt string
+read_text = input()
+
+# use the re.sub to translate any two or more spaces to a comma 
+read_text = re.sub(r'\s{2,}', ',', read_text)
+
+
+# use the re.sub to translate a dot . followed by a space to a new line
+read_text = re.sub(r'\. ', '.\n', read_text)
+
+# use the re.split to split on a newline
+into_list = re.split(r'\n', read_text)
+
+#No need to change this.
+if len(into_list) > 1:
+    for line in into_list:
+        print(line)
+else:
+    print('No pythons here!')
+
+
+
+
+Exercise 4
+The scaffold code shows how to read multiple lines from STDIN. 
+
+Your task, should you accept, is to modify the code to detect any lines with one or more digits and output those lines. 
+
+In the case that no lines with a digit are found you code should output No lines matched! 
+
+You can test you code before you mark it by running it in the terminal. To terminate the code enter an empty line 
+
+ie press the enter key
+
+#!/usr/bin/python3
+import re
+
+find_regx = r'\d+'
+line_tote=0
+
+read_line = input()
+while read_line != '':
+    into_data = re.search(find_regx, read_line)
+    if into_data:
+        line_tote = line_tote + 1
+        print (read_line)
+    #End if read next line.
+    read_line = input()
+#End while
+
+if line_tote == 0:
+    print('No lines matched!')
+
+
+
+
+Exercise 5
+Modify the scaffold code to  match a simply formatted  email address ending in .au
+
+The address should be or the form name@domanlist.au
+
+name should only contain word characters
+
+domanlist is of the form part1.part2 .part3 etc
+
+The address should only contain word characters plus the @ character and the . character.
+
+for example joe@one.two.three.au and joe123@abc1.com.au should match 
+
+The output should print matched upon a successful match
+
+ otherwise it should print not matched
+
+#!/usr/bin/python3
+import re
+
+#Our regx to find 'words then @ words dot then au'
+test_regx = r'\b\w+@\w+(\.\w+)+\.au\b'
+
+#We read a line of input. No need to prompt.
+read_text = input()
+
+#use match
+into_data = re.match(test_regx, read_text)
+if into_data :
+    print("matched")
+else :
+    print("not matched")
+
+
+
+#!/usr/bin/env python3
+# findall tester
+
+import sys
+import re
+
+regex = input('Enter a regular expression: ')
+print('Regex: ', regex)
+
+print('Enter some lines:')
+for line in sys.stdin:
+    line = line.rstrip('\n')
+    x = re.findall(regex,line)
+    print('Matches: ', x)
